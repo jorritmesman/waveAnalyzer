@@ -1,6 +1,6 @@
 #'Calculate buoyancy frequency
 #'
-#'Calcululation of the buoyancy frequency, in rad/s
+#'Calculation of the buoyancy frequency, in rad/s, returns data.frame
 #'
 #'@param wtr numeric; vector of water temperatures in degC
 #'@param depths numeric; vector of depths in m, positive downward
@@ -33,5 +33,6 @@ buoyancy_freq2 = function(wtr, depths, dz = 0.1){
   drhodz[drhodz < 0] = 0
   
   # return
-  sqrt(g / mean(rho) * c(NA, drhodz, NA))
+  data.frame(z = grid,
+             N =sqrt(g / mean(rho) * c(NA, drhodz, NA)))
 }
