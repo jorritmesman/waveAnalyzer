@@ -1,18 +1,26 @@
 #'Calculate buoyancy frequency
 #'
-#'Calculation of the buoyancy frequency, in rad/s, returns data.frame
+#'Calculation of the buoyancy frequency "N", in rad/s, returns data.frame
 #'
 #'@param wtr numeric; vector of water temperatures in degC
 #'@param depths numeric; vector of depths in m, positive downward
 #'@param dz numeric; depth spacing to interpolate to, defaults to 0.1 m
+#'@param rLA_method logical; use rLakeAnalyzer method to calculate z, defaults to FALSE
 #'
-#'@importFrom rLakeAnalyzer water.density
+#'@importFrom rLakeAnalyzer water.density buoyancy.freq
 #'
-#'@examples buoyancy_freq2(c(14, 13, 9, 8), c(0, 2, 4, 6))
+#'@examples buoyancy_freq(c(14, 13, 9, 8), c(0, 2, 4, 6))
 #'
 #'@export
 
-buoyancy_freq2 = function(wtr, depths, dz = 0.1){
+buoyancy_freq = function(wtr, depths, dz = 0.1, rLA_method = FALSE){
+  
+  if(rLA_method){
+    returned_obj = buoyancy.freq(wtr, depths)
+    return(data.frame(z = attr(returned_obj, "depths"),
+                      N = sqrt(returned_obj)))
+  }
+  
   g = 9.81
   
   # Interpolate onto regular grid of dz (linear interpolation)
