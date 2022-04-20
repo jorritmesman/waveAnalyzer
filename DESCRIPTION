@@ -1,0 +1,30 @@
+Package: waveAnalyzer
+Type: Package
+Title: R toolbox for the analysis of internal waves in lakes
+Version: 0.0.1
+Date: 2022-04-20
+URL: https://github.com/jorritmesman/waveAnalyzer
+Author: Authors@R: c(person("Danielle", "Wain", role = c("aut","cre"),
+    email = "danielle.wain@7lakesalliance.org"),
+    person("Jorrit", "Mesman", role = "aut",
+    email = "jorrit.mesman@ebc.uu.se"), 
+    person("Iestyn", "Woolway", role = "aut", 
+    email = "riwoolway@gmail.com"),
+    person("Robert", "Ladwig", role = "aut",
+    email = "rladwig2@wisc.edu"),
+	person("Sean", "Kelly", role = "aut",
+    email = "sean.kelly@fisheriesireland.ie"),
+	person("Sarah", "Burnet", role = "aut",
+    email = "shburnet@gmail.com"))
+Maintainer: Jorrit Mesman <jorrit.mesman@ebc.uu.se>
+Description: R toolbox for the analysis of internal waves in lakes
+License: GPL-2.0
+Depends:
+    R (>= 3.5)
+Imports:
+Suggests:
+Encoding: UTF-8
+LazyData: true
+LazyLoad: true
+RoxygenNote: 7.1.2
+VignetteBuilder: knitr
