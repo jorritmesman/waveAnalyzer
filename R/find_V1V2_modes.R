@@ -1,6 +1,5 @@
-#'Calculate buoyancy frequency
+#'Finds wave periods, thermocline depth, and metalimnion boundaries 
 #'
-#'Calculation of the buoyancy frequency "N", in rad/s, returns data.frame
 #'Uses the temperature profile (z,T) and computes profile of buoyancy
 #'frequency (zN,N) to solve for the V1 and V2 seiche modal structure. The
 #'thermocline depth (zt) is defined as the depth of maximum displacement
@@ -8,9 +7,10 @@
 #'boundaries of the metalimnion (zm1, zm2) are the depths of maximum
 #'displacement during a V2 seiche and are identified from the peaks in the
 #'V2 modal structure. From this and the basin length L, periods of the V1H1
-#'(T1) and V2H1 (T2) seiches are computed. This is based on Munnich et al
+#'(T1) and V2H1 (T2) seiches (in s) are computed. This is based on Munnich et al
 #'1992 and solves for the modes using many layers as opposed to a two or
 #'three layer approximation.
+#'Returns a list
 #'
 #'@param wtr numeric; vector of water temperatures in degC
 #'@param depths numeric; vector of depths in m, positive downward
@@ -64,13 +64,13 @@ find_V1V2_modes = function(wtr, depths, basin_length, rLA_method = FALSE){
   index[2] = which(lambda_vect == lmin)
   lambda2 = lmin # 2nd vertical mode eigenvalue
   
-  # wave speeds from eigenvalues
+  # wave speeds (m/s) from eigenvalues
   c1 = sqrt(1 / lambda1) * Nmean * H
   c2 = sqrt(1 / lambda2) * Nmean * H
   
-  # period of the v1h1 mode
+  # period of the v1h1 mode (s)
   T1 = 2 * basin_length / c1
-  # period of the v2h1 mode
+  # period of the v2h1 mode (s)
   T2 = 2 * basin_length / c2
   
   # phi contains information on the modal structure. Finding the minimum two
